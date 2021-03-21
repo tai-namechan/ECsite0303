@@ -19,33 +19,26 @@ require_once('menu.php')
     <!-- 注文内容の確認画面に飛ぶ -->
     <form method="post" action="confirm.php">
       <div class="menu-items">
-        <?php 
-        foreach ($menus as $menu): 
-        ?>
+        <?php foreach ($menus as $menu): ?>
           <div class="menu-item">
           <!-- <img src="assets/img/coffee1.jpeg" alt="coffee"> -->
-            <img src="
-            <?php 
-            // 画像の呼び出し
-            echo $menu->getImage() 
-            ?>
-            " class="menu-item-image">
+          <!-- 画像の呼び出し -->
+            <img class="menu-item-image" src="<?php echo $menu->getImage() ?>" >
+            
+            <!-- 初期値は食べ物 -->
             <h3 class="menu-item-name">
-            <?php 
-            // 初期値は食べ物
-            echo $menu->getName() 
-            ?>
+              <?php echo $menu->getName() ?>
             </h3>
+
             <p class="price">¥
-            <?php 
-            echo $menu->getTaxPrice() 
-            ?>
+            <?php echo $menu->getTaxPrice() ?>
             （税込）</p>
-            <input type="text" value="0" name="
-            <?php 
-            // echo $menu->getName() 
-            ?>">
+
+            <!-- value属性で初期値を設定することができる -->
+            <input type="text" value="0" name="<?php echo $menu->getName() ?>">
             <span>個</span>
+            <!-- ↑何回個数を入力してもなかなか小計が表示されなかった理由
+            →メニューの品名がそれぞれ同じだったから？ -->
           </div>
         <?php 
         endforeach 
